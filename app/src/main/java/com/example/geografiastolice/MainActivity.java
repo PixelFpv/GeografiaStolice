@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     //int random;
     //int random = new Random().nextInt(15);
     Integer random = 0;
-
+// dodam  komentarz przd commitem
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
