@@ -25,10 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Integer count = 0;
     //TextView tv3;
     FloatingActionButton fab;
-    //int random;
-    //int random = new Random().nextInt(15);
     Integer random = 0;
-// dodam  komentarz przd commitem
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +70,10 @@ public class MainActivity extends AppCompatActivity {
                         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
                         et.setBackgroundColor(getColor(R.color.green));
                         et.setText("");
-                         //random = new Random().nextInt(15);
-                        random++;
-                        //count++;
-                        if(random == 14) {
-                            random = 0;
+                         random = new Random().nextInt(15);
+                        //random++;
 
-                        }
+
                         tv.setText(kraj[random]);
                         //tv3.setText("cou");
                         et.requestFocus();
