@@ -22,10 +22,14 @@ public class MainActivity extends AppCompatActivity {
     String stolica[] = {"Praga", "Bratysława", "Budapeszt", "Bukareszt", "Sofia", "Moskwa", "Wilno", "Ryga", "Tallin", "Mińsk", "Kijów", "Wiedeń", "Warszawa", "Kopenhaga"};
     TextView tv;
     EditText et;
+    Button odp1;
+    Button odp2;
+    Button odp3;
+
     Integer count = 0;
-    //TextView tv3;
     FloatingActionButton fab;
     Integer random = 0;
+    Integer ranB = new Random().nextInt(3);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +38,145 @@ public class MainActivity extends AppCompatActivity {
         tv = findViewById(R.id.textView);
         et = findViewById(R.id.editText);
         fab = findViewById(R.id.fab);
-        //tv3 = findViewById(R.id.textView3);
-        //tv3.setText(count.toString());
+        odp1 = findViewById(R.id.button1);
+        odp2 = findViewById(R.id.button2);
+        odp3 = findViewById(R.id.button3);
 
-        if (et.requestFocus()) {
-            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-
+        String ran1 = stolica[new Random().nextInt(14)];
+        String ran2 = stolica[new Random().nextInt(14)];
+        if (ranB == 0) {
+            odp1.setText(stolica[random]);
+            odp2.setText(stolica[new Random().nextInt(14)]);
+            odp3.setText(stolica[new Random().nextInt(14)]);
+            ranB = new Random().nextInt(3);
         }
+
+        if (ranB == 1){
+            odp2.setText(stolica[random]);
+            odp1.setText(stolica[new Random().nextInt(14)]);
+            odp3.setText(stolica[new Random().nextInt(14)]);
+            ranB = new Random().nextInt(3);
+        }
+
+        if (ranB == 2){
+            odp3.setText(stolica[random]);
+            odp1.setText(stolica[new Random().nextInt(14)]);
+            odp2.setText(stolica[new Random().nextInt(14)]);
+            ranB = new Random().nextInt(3);
+        }
+
+            odp1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (odp1.getText().toString() == stolica[random]) {
+                        random = new Random().nextInt(14);
+                        ranB = new Random().nextInt(3);
+                        if (ranB == 0) {
+                            odp1.setText(stolica[random]);
+                            odp2.setText(stolica[new Random().nextInt(14)]);
+                            odp3.setText(stolica[new Random().nextInt(14)]);
+                            ranB = new Random().nextInt(3);
+                        }
+
+                        if (ranB == 1){
+                            odp2.setText(stolica[random]);
+                            odp1.setText(stolica[new Random().nextInt(14)]);
+                            odp3.setText(stolica[new Random().nextInt(14)]);
+                            ranB = new Random().nextInt(3);
+                        }
+                        if (ranB == 2){
+                            odp3.setText(stolica[random]);
+                            odp1.setText(stolica[new Random().nextInt(14)]);
+                            odp2.setText(stolica[new Random().nextInt(14)]);
+                            ranB = new Random().nextInt(3);
+                        }
+                        tv.setText(kraj[random]);
+                        tv.setBackgroundColor(getColor(R.color.green));
+//                        odp2.setBackgroundColor(getColor(R.color.red));
+                    }else {
+                        tv.setBackgroundColor(getColor(R.color.red));
+
+                    }
+
+                }
+            });
+
+            odp2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (odp2.getText().toString() == stolica[random]) {
+                        random = new Random().nextInt(14);
+                        ranB = new Random().nextInt(3);
+                        if (ranB == 0) {
+                            odp1.setText(stolica[random]);
+                            odp2.setText(stolica[new Random().nextInt(14)]);
+                            odp3.setText(stolica[new Random().nextInt(14)]);
+                            ranB = new Random().nextInt(2);
+                        }
+
+                        if (ranB == 1) {
+                            odp2.setText(stolica[random]);
+                            odp1.setText(stolica[new Random().nextInt(14)]);
+                            odp3.setText(stolica[new Random().nextInt(14)]);
+                            ranB = new Random().nextInt(2);
+                        }
+                        if (ranB == 2) {
+                            odp3.setText(stolica[random]);
+                            odp1.setText(stolica[new Random().nextInt(14)]);
+                            odp2.setText(stolica[new Random().nextInt(14)]);
+                            ranB = new Random().nextInt(3);
+                        }
+                        tv.setText(kraj[random]);
+                        tv.setBackgroundColor(getColor(R.color.green));
+//                        odp1.setBackgroundColor(getColor(R.color.red));
+                    }else {
+                        tv.setBackgroundColor(getColor(R.color.red));
+
+                    }
+                }
+                });
+
+
+            odp3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (odp3.getText().toString() == stolica[random]) {
+                        random = new Random().nextInt(14);
+                        ranB = new Random().nextInt(3);
+                        if (ranB == 0) {
+                            odp1.setText(stolica[random]);
+                            odp2.setText(stolica[new Random().nextInt(14)]);
+                            odp3.setText(stolica[new Random().nextInt(14)]);
+                            ranB = new Random().nextInt(2);
+                        }
+
+                        if (ranB == 1) {
+                            odp2.setText(stolica[random]);
+                            odp1.setText(stolica[new Random().nextInt(14)]);
+                            odp3.setText(stolica[new Random().nextInt(14)]);
+                            ranB = new Random().nextInt(2);
+                        }
+                        if (ranB == 2) {
+                            odp3.setText(stolica[random]);
+                            odp1.setText(stolica[new Random().nextInt(14)]);
+                            odp2.setText(stolica[new Random().nextInt(14)]);
+                            ranB = new Random().nextInt(3);
+                        }
+                        tv.setText(kraj[random]);
+                        tv.setBackgroundColor(getColor(R.color.green));
+//                        odp1.setBackgroundColor(getColor(R.color.red));
+                    }else {
+                        tv.setBackgroundColor(getColor(R.color.red));
+
+                    }
+                }
+            });
+
+
+
+        //if (et.requestFocus()) {
+          //  getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+//        }
          tv.setText(kraj[random]);
 
         final String Sto = stolica[random].toString();
@@ -67,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                         //System.out.println(random);
                         //System.out.println(et.getText().toString());
                         et.clearFocus();
-                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+//                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
                         et.setBackgroundColor(getColor(R.color.green));
                         et.setText("");
                          random = new Random().nextInt(15);
