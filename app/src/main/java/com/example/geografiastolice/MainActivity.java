@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -31,12 +32,32 @@ public class MainActivity extends AppCompatActivity {
     Integer random = 0;
     Integer ranB = new Random().nextInt(3);
 
+    void allButtonsOK() {
+
+//        tu masz przykład ja zatrzymac wykonanie czegoś na jakis czas
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            public void run() {
+//                // yourMethod();
+//                odp1.setBackgroundResource(R.drawable.button_background);
+//                odp2.setBackgroundResource(R.drawable.button_background);
+//                odp3.setBackgroundResource(R.drawable.button_background);
+//                tv.setBackgroundColor(getColor(R.color.white));
+//            }
+//        }, 2000);   //2 seconds
+
+        odp1.setBackgroundResource(R.drawable.button_background);
+        odp2.setBackgroundResource(R.drawable.button_background);
+        odp3.setBackgroundResource(R.drawable.button_background);
+        tv.setBackgroundColor(getColor(R.color.white));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv = findViewById(R.id.textView);
-        et = findViewById(R.id.editText);
+//        et = findViewById(R.id.editText);
         fab = findViewById(R.id.fab);
         odp1 = findViewById(R.id.button1);
         odp2 = findViewById(R.id.button2);
@@ -92,9 +113,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                         tv.setText(kraj[random]);
                         tv.setBackgroundColor(getColor(R.color.green));
+                        allButtonsOK();
 //                        odp2.setBackgroundColor(getColor(R.color.red));
                     }else {
                         tv.setBackgroundColor(getColor(R.color.red));
+                        odp1.setBackgroundResource(R.drawable.button_red);
 
                     }
 
@@ -128,9 +151,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                         tv.setText(kraj[random]);
                         tv.setBackgroundColor(getColor(R.color.green));
+                        allButtonsOK();
 //                        odp1.setBackgroundColor(getColor(R.color.red));
                     }else {
                         tv.setBackgroundColor(getColor(R.color.red));
+                        odp2.setBackgroundResource(R.drawable.button_red);
 
                     }
                 }
@@ -164,9 +189,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                         tv.setText(kraj[random]);
                         tv.setBackgroundColor(getColor(R.color.green));
+                        allButtonsOK();
 //                        odp1.setBackgroundColor(getColor(R.color.red));
                     }else {
                         tv.setBackgroundColor(getColor(R.color.red));
+                        odp3.setBackgroundResource(R.drawable.button_red);
 
                     }
                 }
@@ -191,50 +218,50 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        et.setOnKeyListener(new View.OnKeyListener() {
-            String ett = et.getText().toString();
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
-
-                    et.clearFocus();
-                    et.setHint("Odpowiedź");
-                    if (stolica[random].equals(et.getText().toString())) {
-                        //System.out.println(random);
-                        //System.out.println(et.getText().toString());
-                        et.clearFocus();
+//        et.setOnKeyListener(new View.OnKeyListener() {
+//            String ett = et.getText().toString();
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+//                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+//
+//                    et.clearFocus();
+//                    et.setHint("Odpowiedź");
+//                    if (stolica[random].equals(et.getText().toString())) {
+//                        //System.out.println(random);
+//                        //System.out.println(et.getText().toString());
+//                        et.clearFocus();
+////                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+//                        et.setBackgroundColor(getColor(R.color.green));
+//                        et.setText("");
+//                         random = new Random().nextInt(15);
+//                        //random++;
+//
+//
+//                        tv.setText(kraj[random]);
+//                        //tv3.setText("cou");
+//                        et.requestFocus();
+//
+//
+//                    }else {
+//                        //et.clearFocus();
 //                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-                        et.setBackgroundColor(getColor(R.color.green));
-                        et.setText("");
-                         random = new Random().nextInt(15);
-                        //random++;
-
-
-                        tv.setText(kraj[random]);
-                        //tv3.setText("cou");
-                        et.requestFocus();
-
-
-                    }else {
-                        //et.clearFocus();
-                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-                        et.setBackgroundColor(getColor(R.color.red));
-                        et.setText("");
-                        et.setHint("Jeszcze raz!");
-                        et.requestFocus();
-                        //count--;
-                        //tv3.setText("cou");
-
-                    }
-
-
-
-                    }
-
-                return false;
-            }
-
-        });
+//                        et.setBackgroundColor(getColor(R.color.red));
+//                        et.setText("");
+//                        et.setHint("Jeszcze raz!");
+//                        et.requestFocus();
+//                        //count--;
+//                        //tv3.setText("cou");
+//
+//                    }
+//
+//
+//
+//                    }
+//
+//                return false;
+//            }
+//
+//        });
 
     }
 }
