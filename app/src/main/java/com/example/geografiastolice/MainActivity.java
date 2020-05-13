@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     Integer count = 0;
     FloatingActionButton fab;
-    Integer random = 0;
+    //Integer random = 0;
+    Integer random = new Random().nextInt(14);
     Integer ranB = new Random().nextInt(3);
 
     void allButtonsOK() {
@@ -50,26 +51,39 @@ public class MainActivity extends AppCompatActivity {
         odp2.setBackgroundResource(R.drawable.button_background);
         odp3.setBackgroundResource(R.drawable.button_background);
         tv.setBackgroundColor(getColor(R.color.white));
+       // int random = new Random().nextInt(14);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        tv = findViewById(R.id.textView);
-//        et = findViewById(R.id.editText);
-        fab = findViewById(R.id.fab);
-        odp1 = findViewById(R.id.button1);
-        odp2 = findViewById(R.id.button2);
-        odp3 = findViewById(R.id.button3);
+//    void hint(){
+//        int ranZb = new Random().nextInt(2);
+//        if (ranB == 0){
+//
+//
+//        }
+//        if (ranB == 1){
+//
+//
+//        }
+//        if (ranB == 2){
+//
+//
+//        }
+//
+//    }
 
-        String ran1 = stolica[new Random().nextInt(14)];
-        String ran2 = stolica[new Random().nextInt(14)];
+    void ify(){
+        random = new Random().nextInt(14);
+//        tv.setText(kraj[random]);
+//        tv.setBackgroundColor(getColor(R.color.green));
+        allButtonsOK();
+        ranB = new Random().nextInt(3);
+//        int ranB = 0;
         if (ranB == 0) {
             odp1.setText(stolica[random]);
             odp2.setText(stolica[new Random().nextInt(14)]);
             odp3.setText(stolica[new Random().nextInt(14)]);
             ranB = new Random().nextInt(3);
+//            return;
         }
 
         if (ranB == 1){
@@ -77,44 +91,38 @@ public class MainActivity extends AppCompatActivity {
             odp1.setText(stolica[new Random().nextInt(14)]);
             odp3.setText(stolica[new Random().nextInt(14)]);
             ranB = new Random().nextInt(3);
+//            return;
         }
-
         if (ranB == 2){
             odp3.setText(stolica[random]);
             odp1.setText(stolica[new Random().nextInt(14)]);
             odp2.setText(stolica[new Random().nextInt(14)]);
             ranB = new Random().nextInt(3);
+//            return;
+
         }
+        tv.setText(kraj[random]);
+
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        tv = findViewById(R.id.textView);
+        fab = findViewById(R.id.fab);
+        odp1 = findViewById(R.id.button1);
+        odp2 = findViewById(R.id.button2);
+        odp3 = findViewById(R.id.button3);
+
+        ify();
 
             odp1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (odp1.getText().toString() == stolica[random]) {
-                        random = new Random().nextInt(14);
-                        ranB = new Random().nextInt(3);
-                        if (ranB == 0) {
-                            odp1.setText(stolica[random]);
-                            odp2.setText(stolica[new Random().nextInt(14)]);
-                            odp3.setText(stolica[new Random().nextInt(14)]);
-                            ranB = new Random().nextInt(3);
-                        }
-
-                        if (ranB == 1){
-                            odp2.setText(stolica[random]);
-                            odp1.setText(stolica[new Random().nextInt(14)]);
-                            odp3.setText(stolica[new Random().nextInt(14)]);
-                            ranB = new Random().nextInt(3);
-                        }
-                        if (ranB == 2){
-                            odp3.setText(stolica[random]);
-                            odp1.setText(stolica[new Random().nextInt(14)]);
-                            odp2.setText(stolica[new Random().nextInt(14)]);
-                            ranB = new Random().nextInt(3);
-                        }
-                        tv.setText(kraj[random]);
-                        tv.setBackgroundColor(getColor(R.color.green));
-                        allButtonsOK();
-//                        odp2.setBackgroundColor(getColor(R.color.red));
+                        ify();
                     }else {
                         tv.setBackgroundColor(getColor(R.color.red));
                         odp1.setBackgroundResource(R.drawable.button_red);
@@ -128,35 +136,10 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (odp2.getText().toString() == stolica[random]) {
-                        random = new Random().nextInt(14);
-                        ranB = new Random().nextInt(3);
-                        if (ranB == 0) {
-                            odp1.setText(stolica[random]);
-                            odp2.setText(stolica[new Random().nextInt(14)]);
-                            odp3.setText(stolica[new Random().nextInt(14)]);
-                            ranB = new Random().nextInt(2);
-                        }
-
-                        if (ranB == 1) {
-                            odp2.setText(stolica[random]);
-                            odp1.setText(stolica[new Random().nextInt(14)]);
-                            odp3.setText(stolica[new Random().nextInt(14)]);
-                            ranB = new Random().nextInt(2);
-                        }
-                        if (ranB == 2) {
-                            odp3.setText(stolica[random]);
-                            odp1.setText(stolica[new Random().nextInt(14)]);
-                            odp2.setText(stolica[new Random().nextInt(14)]);
-                            ranB = new Random().nextInt(3);
-                        }
-                        tv.setText(kraj[random]);
-                        tv.setBackgroundColor(getColor(R.color.green));
-                        allButtonsOK();
-//                        odp1.setBackgroundColor(getColor(R.color.red));
+                        ify();
                     }else {
                         tv.setBackgroundColor(getColor(R.color.red));
                         odp2.setBackgroundResource(R.drawable.button_red);
-
                     }
                 }
                 });
@@ -166,31 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (odp3.getText().toString() == stolica[random]) {
-                        random = new Random().nextInt(14);
-                        ranB = new Random().nextInt(3);
-                        if (ranB == 0) {
-                            odp1.setText(stolica[random]);
-                            odp2.setText(stolica[new Random().nextInt(14)]);
-                            odp3.setText(stolica[new Random().nextInt(14)]);
-                            ranB = new Random().nextInt(2);
-                        }
-
-                        if (ranB == 1) {
-                            odp2.setText(stolica[random]);
-                            odp1.setText(stolica[new Random().nextInt(14)]);
-                            odp3.setText(stolica[new Random().nextInt(14)]);
-                            ranB = new Random().nextInt(2);
-                        }
-                        if (ranB == 2) {
-                            odp3.setText(stolica[random]);
-                            odp1.setText(stolica[new Random().nextInt(14)]);
-                            odp2.setText(stolica[new Random().nextInt(14)]);
-                            ranB = new Random().nextInt(3);
-                        }
-                        tv.setText(kraj[random]);
-                        tv.setBackgroundColor(getColor(R.color.green));
-                        allButtonsOK();
-//                        odp1.setBackgroundColor(getColor(R.color.red));
+                        ify();
                     }else {
                         tv.setBackgroundColor(getColor(R.color.red));
                         odp3.setBackgroundResource(R.drawable.button_red);
@@ -201,19 +160,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //if (et.requestFocus()) {
-          //  getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-//        }
-         tv.setText(kraj[random]);
+//         tv.setText(kraj[random]);
 
-        final String Sto = stolica[random].toString();
-        final char first = Sto.charAt(0);
+//        final String Sto = stolica[random].toString();
+//        final char first = Sto.charAt(0);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                et.requestFocus();
-                et.setHint(stolica[random]);
-               // et.setHint("h");
+
             }
         });
 
