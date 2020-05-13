@@ -1,8 +1,6 @@
 package com.example.geografiastolice;
 import java.util.Random;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,25 +11,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 
 public class MainActivity extends AppCompatActivity {
 
     String kraj[] = {"Czechy", "Słowacja", "Węgry", "Rumunia", "Bułgaria", "Rosja", "Litwa", "Łotwa", "Estonia", "Białoruś", "Ukraina", "Austria", "Polska", "Dania"};
     String stolica[] = {"Praga", "Bratysława", "Budapeszt", "Bukareszt", "Sofia", "Moskwa", "Wilno", "Ryga", "Tallin", "Mińsk", "Kijów", "Wiedeń", "Warszawa", "Kopenhaga"};
     TextView tv;
+    TextView hint_L;
     EditText et;
     Button odp1;
     Button odp2;
     Button odp3;
 
     Integer count = 0;
+    boolean hint_= true;
     FloatingActionButton fab;
-    //Integer random = 0;
     Integer random = new Random().nextInt(14);
     Integer ranB = new Random().nextInt(3);
+    Integer hintlicznik = 1;
+
 
     void allButtonsOK() {
 
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         odp2.setBackgroundResource(R.drawable.button_background);
         odp3.setBackgroundResource(R.drawable.button_background);
         tv.setBackgroundColor(getColor(R.color.white));
-       // int random = new Random().nextInt(14);
     }
 
     void hint(){
@@ -88,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
     void ify(){
         random = new Random().nextInt(14);
-//        tv.setText(kraj[random]);
-//        tv.setBackgroundColor(getColor(R.color.green));
         allButtonsOK();
         ranB = new Random().nextInt(3);
 //        int ranB = 0;
@@ -107,8 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
             odp3.setText(odp_2);
-//            ranB = new Random().nextInt(3);
-//            return;
         }
 
         if (ranB == 1){
@@ -125,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
             odp3.setText(odp_2);
-//            ranB = new Random().nextInt(3);
-//            return;
         }
         if (ranB == 2){
             String odp_1 = stolica[new Random().nextInt(14)];
@@ -142,8 +134,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
             odp1.setText(odp_2);
-//            ranB = new Random().nextInt(3);
-//            return;
 
         }
         tv.setText(kraj[random]);
@@ -156,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv = findViewById(R.id.textView);
+        hint_L = findViewById(R.id.textView4);
+        hint_L.setText(hintlicznik);
         fab = findViewById(R.id.fab);
         odp1 = findViewById(R.id.button1);
         odp2 = findViewById(R.id.button2);
@@ -204,63 +196,18 @@ public class MainActivity extends AppCompatActivity {
             });
 
 
-
-//         tv.setText(kraj[random]);
-
-//        final String Sto = stolica[random].toString();
-//        final char first = Sto.charAt(0);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hint();
+                if (hint_) {
+                    hint();
+                    hint_ = false;
+                    hintlicznik --;
+                    hint_L.setText(hintlicznik);
+                }else {
+
+                }
             }
         });
-
-
-//        et.setOnKeyListener(new View.OnKeyListener() {
-//            String ett = et.getText().toString();
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-//                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
-//
-//                    et.clearFocus();
-//                    et.setHint("Odpowiedź");
-//                    if (stolica[random].equals(et.getText().toString())) {
-//                        //System.out.println(random);
-//                        //System.out.println(et.getText().toString());
-//                        et.clearFocus();
-////                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-//                        et.setBackgroundColor(getColor(R.color.green));
-//                        et.setText("");
-//                         random = new Random().nextInt(15);
-//                        //random++;
-//
-//
-//                        tv.setText(kraj[random]);
-//                        //tv3.setText("cou");
-//                        et.requestFocus();
-//
-//
-//                    }else {
-//                        //et.clearFocus();
-//                        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-//                        et.setBackgroundColor(getColor(R.color.red));
-//                        et.setText("");
-//                        et.setHint("Jeszcze raz!");
-//                        et.requestFocus();
-//                        //count--;
-//                        //tv3.setText("cou");
-//
-//                    }
-//
-//
-//
-//                    }
-//
-//                return false;
-//            }
-//
-//        });
-
     }
 }
