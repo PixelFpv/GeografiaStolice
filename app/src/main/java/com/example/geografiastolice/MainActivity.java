@@ -94,24 +94,54 @@ public class MainActivity extends AppCompatActivity {
         ranB = new Random().nextInt(3);
 //        int ranB = 0;
         if (ranB == 0) {
+            String odp_1 = stolica[new Random().nextInt(14)];
+            String odp_2 = stolica[new Random().nextInt(14)];
             odp1.setText(stolica[random]);
-            odp2.setText(stolica[new Random().nextInt(14)]);
-            odp3.setText(stolica[new Random().nextInt(14)]);
+
+            while (stolica[random] == odp_1) {
+                odp_1 = stolica[new Random().nextInt(14)];
+            }
+            odp2.setText(odp_1);
+            while (stolica[random] == odp_2 && odp_1 == odp_2) {
+                odp_2 = stolica[new Random().nextInt(14)];
+
+            }
+            odp3.setText(odp_2);
 //            ranB = new Random().nextInt(3);
 //            return;
         }
 
         if (ranB == 1){
+            String odp_1 = stolica[new Random().nextInt(14)];
+            String odp_2 = stolica[new Random().nextInt(14)];
             odp2.setText(stolica[random]);
-            odp1.setText(stolica[new Random().nextInt(14)]);
-            odp3.setText(stolica[new Random().nextInt(14)]);
+
+            while (stolica[random] == odp_1) {
+                odp_1 = stolica[new Random().nextInt(14)];
+            }
+            odp1.setText(odp_1);
+            while (stolica[random] == odp_2 && odp_1 == odp_2) {
+                odp_2 = stolica[new Random().nextInt(14)];
+
+            }
+            odp3.setText(odp_2);
 //            ranB = new Random().nextInt(3);
 //            return;
         }
         if (ranB == 2){
+            String odp_1 = stolica[new Random().nextInt(14)];
+            String odp_2 = stolica[new Random().nextInt(14)];
             odp3.setText(stolica[random]);
-            odp1.setText(stolica[new Random().nextInt(14)]);
-            odp2.setText(stolica[new Random().nextInt(14)]);
+
+            while (stolica[random] == odp_1) {
+                odp_1 = stolica[new Random().nextInt(14)];
+            }
+            odp2.setText(odp_1);
+            while (stolica[random] == odp_2 && odp_1 == odp_2) {
+                odp_2 = stolica[new Random().nextInt(14)];
+
+            }
+            odp1.setText(odp_2);
 //            ranB = new Random().nextInt(3);
 //            return;
 
