@@ -54,22 +54,37 @@ public class MainActivity extends AppCompatActivity {
        // int random = new Random().nextInt(14);
     }
 
-//    void hint(){
-//        int ranZb = new Random().nextInt(2);
-//        if (ranB == 0){
-//
-//
-//        }
-//        if (ranB == 1){
-//
-//
-//        }
-//        if (ranB == 2){
-//
-//
-//        }
-//
-//    }
+    void hint(){
+        int ranZb = new Random().nextInt(2);
+        if (odp1.getText().toString() == stolica[random]){
+            if (ranZb == 0){
+                odp2.setBackgroundResource(R.drawable.button_red);
+            }
+            if (ranZb == 1){
+                odp3.setBackgroundResource(R.drawable.button_red);
+            }
+
+        }
+        if (odp2.getText().toString() == stolica[random]){
+            if (ranZb == 0){
+                odp1.setBackgroundResource(R.drawable.button_red);
+            }
+            if (ranZb == 1){
+                odp3.setBackgroundResource(R.drawable.button_red);
+            }
+
+        }
+        if (odp3.getText().toString() == stolica[random]){
+            if (ranZb == 0){
+                odp1.setBackgroundResource(R.drawable.button_red);
+            }
+            if (ranZb == 1){
+                odp2.setBackgroundResource(R.drawable.button_red);
+            }
+
+        }
+
+    }
 
     void ify(){
         random = new Random().nextInt(14);
@@ -82,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             odp1.setText(stolica[random]);
             odp2.setText(stolica[new Random().nextInt(14)]);
             odp3.setText(stolica[new Random().nextInt(14)]);
-            ranB = new Random().nextInt(3);
+//            ranB = new Random().nextInt(3);
 //            return;
         }
 
@@ -90,14 +105,14 @@ public class MainActivity extends AppCompatActivity {
             odp2.setText(stolica[random]);
             odp1.setText(stolica[new Random().nextInt(14)]);
             odp3.setText(stolica[new Random().nextInt(14)]);
-            ranB = new Random().nextInt(3);
+//            ranB = new Random().nextInt(3);
 //            return;
         }
         if (ranB == 2){
             odp3.setText(stolica[random]);
             odp1.setText(stolica[new Random().nextInt(14)]);
             odp2.setText(stolica[new Random().nextInt(14)]);
-            ranB = new Random().nextInt(3);
+//            ranB = new Random().nextInt(3);
 //            return;
 
         }
@@ -167,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                hint();
             }
         });
 
