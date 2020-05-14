@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     Integer random = new Random().nextInt(14);
     Integer ranB = new Random().nextInt(3);
     Integer hintlicznik = 1;
+    int count_t = 0;
+
 
 
     void allButtonsOK() {
@@ -170,6 +172,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (odp1.getText().toString() == stolica[random]) {
                         ify();
+                        count_t++;
+                        pointT.setText(Integer.toString(count_t));
                     }else {
                         tv.setBackgroundColor(getColor(R.color.red));
                         odp1.setBackgroundResource(R.drawable.button_red);
@@ -179,13 +183,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            odp2.setOnClickListener(new View.OnClickListener() {
+
+        odp2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (odp2.getText().toString() == stolica[random]) {
-                        int count_ = 0;
-                        count_++;
-                        pointT.setText(Integer.toString(count_));
+                        count_t++;
+                        pointT.setText(Integer.toString(count_t));
                         ify();
                     }else {
                         tv.setBackgroundColor(getColor(R.color.red));
@@ -200,6 +204,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (odp3.getText().toString() == stolica[random]) {
                         ify();
+                        count_t++;
+                        pointT.setText(Integer.toString(count_t));
                     }else {
                         tv.setBackgroundColor(getColor(R.color.red));
                         odp3.setBackgroundResource(R.drawable.button_red);
