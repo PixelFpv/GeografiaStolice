@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     String kraj[] = {"Czechy", "Słowacja", "Węgry", "Rumunia", "Bułgaria", "Rosja", "Litwa", "Łotwa", "Estonia", "Białoruś", "Ukraina", "Austria", "Polska", "Dania"};
     String stolica[] = {"Praga", "Bratysława", "Budapeszt", "Bukareszt", "Sofia", "Moskwa", "Wilno", "Ryga", "Tallin", "Mińsk", "Kijów", "Wiedeń", "Warszawa", "Kopenhaga"};
     TextView tv;
+    TextView pointT;
     TextView hint_L;
     EditText et;
     Button odp1;
@@ -89,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
         allButtonsOK();
         ranB = new Random().nextInt(3);
 //        int ranB = 0;
+        count++;
+        if (count == 10){
+            hintlicznik = 1;
+            hint_L.setText(Integer.toString(hintlicznik));
+            hint_ = true;
+        }
         if (ranB == 0) {
             String odp_1 = stolica[new Random().nextInt(14)];
             String odp_2 = stolica[new Random().nextInt(14)];
@@ -148,6 +155,9 @@ public class MainActivity extends AppCompatActivity {
         tv = findViewById(R.id.textView);
         hint_L = findViewById(R.id.textView4);
         hint_L.setText(Integer.toString(hintlicznik));
+        pointT = findViewById(R.id.textView2);
+        pointT.setText("0");
+        pointT.setTextColor(getColor(R.color.green));
         fab = findViewById(R.id.fab);
         odp1 = findViewById(R.id.button1);
         odp2 = findViewById(R.id.button2);
@@ -173,6 +183,9 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (odp2.getText().toString() == stolica[random]) {
+                        int count_ = 0;
+                        count_++;
+                        pointT.setText(Integer.toString(count_));
                         ify();
                     }else {
                         tv.setBackgroundColor(getColor(R.color.red));
