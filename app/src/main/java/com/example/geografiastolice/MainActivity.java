@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tv = findViewById(R.id.textView);
         hint_L = findViewById(R.id.textView4);
-        hint_L.setText(hintlicznik);
+        hint_L.setText(Integer.toString(hintlicznik));
         fab = findViewById(R.id.fab);
         odp1 = findViewById(R.id.button1);
         odp2 = findViewById(R.id.button2);
@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                     hint();
                     hint_ = false;
                     hintlicznik --;
-                    hint_L.setText(hintlicznik);
+                    hint_L.setText(Integer.toString(hintlicznik));
                 }else {
 
                 }
