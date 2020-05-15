@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     String stolica[] = {"Praga", "Bratysława", "Budapeszt", "Bukareszt", "Sofia", "Moskwa", "Wilno", "Ryga", "Tallin", "Mińsk", "Kijów", "Wiedeń", "Warszawa", "Kopenhaga"};
     TextView tv;
     TextView pointT;
+    TextView pointF;
     TextView hint_L;
     EditText et;
     Button odp1;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     Integer ranB = new Random().nextInt(3);
     Integer hintlicznik = 1;
     int count_t = 0;
+    int count_f = 0;
+
 
 
 
@@ -160,6 +163,9 @@ public class MainActivity extends AppCompatActivity {
         pointT = findViewById(R.id.textView2);
         pointT.setText("0");
         pointT.setTextColor(getColor(R.color.green));
+        pointF = findViewById(R.id.textView5);
+        pointF.setText("0");
+        pointF.setTextColor(getColor(R.color.red));
         fab = findViewById(R.id.fab);
         odp1 = findViewById(R.id.button1);
         odp2 = findViewById(R.id.button2);
@@ -175,6 +181,8 @@ public class MainActivity extends AppCompatActivity {
                         count_t++;
                         pointT.setText(Integer.toString(count_t));
                     }else {
+                        count_f++;
+                        pointF.setText(Integer.toString(count_f));
                         tv.setBackgroundColor(getColor(R.color.red));
                         odp1.setBackgroundResource(R.drawable.button_red);
 
@@ -192,6 +200,8 @@ public class MainActivity extends AppCompatActivity {
                         pointT.setText(Integer.toString(count_t));
                         ify();
                     }else {
+                        count_f++;
+                        pointF.setText(Integer.toString(count_f));
                         tv.setBackgroundColor(getColor(R.color.red));
                         odp2.setBackgroundResource(R.drawable.button_red);
                     }
@@ -207,6 +217,8 @@ public class MainActivity extends AppCompatActivity {
                         count_t++;
                         pointT.setText(Integer.toString(count_t));
                     }else {
+                        count_f++;
+                        pointF.setText(Integer.toString(count_f));
                         tv.setBackgroundColor(getColor(R.color.red));
                         odp3.setBackgroundResource(R.drawable.button_red);
 
