@@ -1,4 +1,7 @@
 package com.example.geografiastolice;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Random;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
@@ -13,10 +16,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
 public class MainActivity extends AppCompatActivity {
 
-    String kraj[] = {"Czechy", "Słowacja", "Węgry", "Rumunia", "Bułgaria", "Rosja", "Litwa", "Łotwa", "Estonia", "Białoruś", "Ukraina", "Austria", "Polska", "Dania"};
-    String stolica[] = {"Praga", "Bratysława", "Budapeszt", "Bukareszt", "Sofia", "Moskwa", "Wilno", "Ryga", "Tallin", "Mińsk", "Kijów", "Wiedeń", "Warszawa", "Kopenhaga"};
+//    String[] kraj;
+//    String[] stolica;
+    ArrayList<String> kraj = new ArrayList<>();
+    ArrayList<String> stolica = new ArrayList<>();
+
+
+//    String kraj[] = {"Czechy", "Słowacja", "Węgry", "Rumunia", "Bułgaria", "Rosja", "Litwa", "Łotwa", "Estonia", "Białoruś", "Ukraina", "Austria", "Polska", "Dania"};
+//    String stolica[] = {"Praga", "Bratysława", "Budapeszt", "Bukareszt", "Sofia", "Moskwa", "Wilno", "Ryga", "Tallin", "Mińsk", "Kijów", "Wiedeń", "Warszawa", "Kopenhaga"};
     TextView tv;
     TextView hint_L;
     EditText et;
@@ -24,12 +38,48 @@ public class MainActivity extends AppCompatActivity {
     Button odp2;
     Button odp3;
 
-    Integer count = 0;
+    Integer count = 0,wielkosc;
     boolean hint_= true;
     FloatingActionButton fab;
     Integer random = new Random().nextInt(14);
     Integer ranB = new Random().nextInt(3);
     Integer hintlicznik = 1;
+
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = getAssets().open("kraje_pl.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch ( IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
+void WczytajZmienne(){
+    try {
+        // get JSONObject from JSON file
+        JSONObject obj = new JSONObject(loadJSONFromAsset());
+        // fetch JSONArray named users
+        JSONArray userArray = obj.getJSONArray("kraje");
+        // implement for loop for getting users list data
+        for (int i = 0; i < userArray.length(); i++) {
+            // create a JSONObject for fetching single user data
+            JSONObject userDetail = userArray.getJSONObject(i);
+            // fetch email and name and store it in arraylist
+            kraj.add(userDetail.getString("name"));
+            stolica.add(userDetail.getString("capitol"));
+            wielkosc = kraj.size()-1;
+        }
+    } catch ( JSONException e) {
+        e.printStackTrace();
+    }
+}
 
 
     void allButtonsOK() {
@@ -54,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
     void hint(){
         int ranZb = new Random().nextInt(2);
-        if (odp1.getText().toString() == stolica[random]){
+        if (odp1.getText().toString() == stolica.get(random)){
             if (ranZb == 0){
                 odp2.setBackgroundResource(R.drawable.button_red);
             }
@@ -63,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-        if (odp2.getText().toString() == stolica[random]){
+        if (odp2.getText().toString() == stolica.get(random)){
             if (ranZb == 0){
                 odp1.setBackgroundResource(R.drawable.button_red);
             }
@@ -72,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-        if (odp3.getText().toString() == stolica[random]){
+        if (odp3.getText().toString() == stolica.get(random)){
             if (ranZb == 0){
                 odp1.setBackgroundResource(R.drawable.button_red);
             }
@@ -85,61 +135,63 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void ify(){
-        random = new Random().nextInt(14);
+        random = new Random().nextInt(wielkosc);
         allButtonsOK();
         ranB = new Random().nextInt(3);
 //        int ranB = 0;
         if (ranB == 0) {
-            String odp_1 = stolica[new Random().nextInt(14)];
-            String odp_2 = stolica[new Random().nextInt(14)];
-            odp1.setText(stolica[random]);
+            String odp_1 = stolica.get(new Random().nextInt(wielkosc));
+            String odp_2 = stolica.get(new Random().nextInt(wielkosc));
+            odp1.setText(stolica.get(random));
 
-            while (stolica[random] == odp_1) {
-                odp_1 = stolica[new Random().nextInt(14)];
+            while (stolica.get(random) == odp_1) {
+                odp_1 = stolica.get(new Random().nextInt(wielkosc));
             }
             odp2.setText(odp_1);
-            while (stolica[random] == odp_2 && odp_1 == odp_2) {
-                odp_2 = stolica[new Random().nextInt(14)];
+            while (stolica.get(random) == odp_2 && odp_1 == odp_2) {
+                odp_2 = stolica.get(new Random().nextInt(wielkosc));
 
             }
             odp3.setText(odp_2);
         }
 
         if (ranB == 1){
-            String odp_1 = stolica[new Random().nextInt(14)];
-            String odp_2 = stolica[new Random().nextInt(14)];
-            odp2.setText(stolica[random]);
+            String odp_1 = stolica.get(new Random().nextInt(wielkosc));
+            String odp_2 = stolica.get(new Random().nextInt(wielkosc));
+            odp2.setText(stolica.get(random));
 
-            while (stolica[random] == odp_1) {
-                odp_1 = stolica[new Random().nextInt(14)];
+            while (stolica.get(random) == odp_1) {
+                odp_1 = stolica.get(new Random().nextInt(wielkosc));
             }
             odp1.setText(odp_1);
-            while (stolica[random] == odp_2 && odp_1 == odp_2) {
-                odp_2 = stolica[new Random().nextInt(14)];
+            while (stolica.get(random) == odp_2 && odp_1 == odp_2) {
+                odp_2 = stolica.get(new Random().nextInt(wielkosc));
 
             }
             odp3.setText(odp_2);
         }
         if (ranB == 2){
-            String odp_1 = stolica[new Random().nextInt(14)];
-            String odp_2 = stolica[new Random().nextInt(14)];
-            odp3.setText(stolica[random]);
+            String odp_1 = stolica.get(new Random().nextInt(wielkosc));
+            String odp_2 = stolica.get(new Random().nextInt(wielkosc));
+            odp3.setText(stolica.get(random));
 
-            while (stolica[random] == odp_1) {
-                odp_1 = stolica[new Random().nextInt(14)];
+            while (stolica.get(random) == odp_1) {
+                odp_1 = stolica.get(new Random().nextInt(wielkosc));
             }
             odp2.setText(odp_1);
-            while (stolica[random] == odp_2 && odp_1 == odp_2) {
-                odp_2 = stolica[new Random().nextInt(14)];
+            while (stolica.get(random) == odp_2 && odp_1 == odp_2) {
+                odp_2 = stolica.get(new Random().nextInt(wielkosc));
 
             }
             odp1.setText(odp_2);
 
         }
-        tv.setText(kraj[random]);
+        tv.setText(kraj.get(random));
 
 
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,13 +204,13 @@ public class MainActivity extends AppCompatActivity {
         odp1 = findViewById(R.id.button1);
         odp2 = findViewById(R.id.button2);
         odp3 = findViewById(R.id.button3);
-
+        WczytajZmienne();
         ify();
 
             odp1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (odp1.getText().toString() == stolica[random]) {
+                    if (odp1.getText().toString() == stolica.get(random)) {
                         ify();
                     }else {
                         tv.setBackgroundColor(getColor(R.color.red));
@@ -172,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
             odp2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (odp2.getText().toString() == stolica[random]) {
+                    if (odp2.getText().toString() == stolica.get(random)) {
                         ify();
                     }else {
                         tv.setBackgroundColor(getColor(R.color.red));
@@ -185,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
             odp3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (odp3.getText().toString() == stolica[random]) {
+                    if (odp3.getText().toString() == stolica.get(random)) {
                         ify();
                     }else {
                         tv.setBackgroundColor(getColor(R.color.red));
