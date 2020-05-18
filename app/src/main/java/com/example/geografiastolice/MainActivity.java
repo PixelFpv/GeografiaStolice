@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     TextView pointF;
     TextView hint_L;
     EditText et;
+    ImageView im;
     Button odp1;
     Button odp2;
     Button odp3;
@@ -166,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
         pointF = findViewById(R.id.textView5);
         pointF.setText("0");
         pointF.setTextColor(getColor(R.color.red));
+        im = findViewById(R.id.imageView2);
         fab = findViewById(R.id.fab);
         odp1 = findViewById(R.id.button1);
         odp2 = findViewById(R.id.button2);
