@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 //                odp2.setBackgroundResource(R.drawable.button_background);
 //                odp3.setBackgroundResource(R.drawable.button_background);
 //                tv.setBackgroundColor(getColor(R.color.white));
-//           }
+//            }
 //        }, 2000);   //2 seconds
 
         odp1.setBackgroundResource(R.drawable.button_background);
