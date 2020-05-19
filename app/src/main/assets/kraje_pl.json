@@ -1,0 +1,29 @@
+{
+  "kraje": [
+    {
+      "name": "Polska",
+      "capitol": "warszaw",
+      "waluta" : "Złoty"
+    },
+    {
+      "name": "Anglia",
+      "capitol": "Londyn",
+      "waluta" : "Funt"
+    },
+    {
+      "name": "Niemcy",
+      "capitol": "Berlin",
+      "waluta" : "Funt"
+    },
+    {
+      "name": "Czechy",
+      "capitol": "Praga",
+      "waluta" : "Funt"
+    },
+    {
+      "name": "Węgry",
+      "capitol": "Budapeszt",
+      "waluta" : "Funt"
+    }
+  ]
+}
