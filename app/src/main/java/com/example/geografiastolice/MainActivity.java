@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,8 +33,11 @@ public class MainActivity extends AppCompatActivity {
 //    String kraj[] = {"Czechy", "Słowacja", "Węgry", "Rumunia", "Bułgaria", "Rosja", "Litwa", "Łotwa", "Estonia", "Białoruś", "Ukraina", "Austria", "Polska", "Dania"};
 //    String stolica[] = {"Praga", "Bratysława", "Budapeszt", "Bukareszt", "Sofia", "Moskwa", "Wilno", "Ryga", "Tallin", "Mińsk", "Kijów", "Wiedeń", "Warszawa", "Kopenhaga"};
     TextView tv;
+    TextView pointT;
+    TextView pointF;
     TextView hint_L;
     EditText et;
+    ImageView im;
     Button odp1;
     Button odp2;
     Button odp3;
@@ -44,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
     Integer random = new Random().nextInt(14);
     Integer ranB = new Random().nextInt(3);
     Integer hintlicznik = 1;
+    int count_t = 0;
+    int count_f = 0;
+
+
 
     public String loadJSONFromAsset() {
         String json = null;
@@ -139,6 +147,12 @@ void WczytajZmienne(){
         allButtonsOK();
         ranB = new Random().nextInt(3);
 //        int ranB = 0;
+        count++;
+        if (count == 10){
+            hintlicznik = 1;
+            hint_L.setText(Integer.toString(hintlicznik));
+            hint_ = true;
+        }
         if (ranB == 0) {
             String odp_1 = stolica.get(new Random().nextInt(wielkosc));
             String odp_2 = stolica.get(new Random().nextInt(wielkosc));
@@ -200,6 +214,13 @@ void WczytajZmienne(){
         tv = findViewById(R.id.textView);
         hint_L = findViewById(R.id.textView4);
         hint_L.setText(Integer.toString(hintlicznik));
+        pointT = findViewById(R.id.textView2);
+        pointT.setText("0");
+        pointT.setTextColor(getColor(R.color.green));
+        pointF = findViewById(R.id.textView5);
+        pointF.setText("0");
+        pointF.setTextColor(getColor(R.color.red));
+        im = findViewById(R.id.imageView2);
         fab = findViewById(R.id.fab);
         odp1 = findViewById(R.id.button1);
         odp2 = findViewById(R.id.button2);
@@ -212,7 +233,11 @@ void WczytajZmienne(){
                 public void onClick(View v) {
                     if (odp1.getText().toString() == stolica.get(random)) {
                         ify();
+                        count_t++;
+                        pointT.setText(Integer.toString(count_t));
                     }else {
+                        count_f++;
+                        pointF.setText(Integer.toString(count_f));
                         tv.setBackgroundColor(getColor(R.color.red));
                         odp1.setBackgroundResource(R.drawable.button_red);
 
@@ -221,12 +246,20 @@ void WczytajZmienne(){
                 }
             });
 
-            odp2.setOnClickListener(new View.OnClickListener() {
+
+        odp2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     if (odp2.getText().toString() == stolica.get(random)) {
+
+                        count_t++;
+                        pointT.setText(Integer.toString(count_t));
+
                         ify();
                     }else {
+                        count_f++;
+                        pointF.setText(Integer.toString(count_f));
                         tv.setBackgroundColor(getColor(R.color.red));
                         odp2.setBackgroundResource(R.drawable.button_red);
                     }
@@ -239,7 +272,11 @@ void WczytajZmienne(){
                 public void onClick(View v) {
                     if (odp3.getText().toString() == stolica.get(random)) {
                         ify();
+                        count_t++;
+                        pointT.setText(Integer.toString(count_t));
                     }else {
+                        count_f++;
+                        pointF.setText(Integer.toString(count_f));
                         tv.setBackgroundColor(getColor(R.color.red));
                         odp3.setBackgroundResource(R.drawable.button_red);
 
