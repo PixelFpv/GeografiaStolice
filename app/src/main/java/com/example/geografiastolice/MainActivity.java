@@ -24,14 +24,10 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-//    String[] kraj;
-//    String[] stolica;
     ArrayList<String> kraj = new ArrayList<>();
     ArrayList<String> stolica = new ArrayList<>();
 
 
-//    String kraj[] = {"Czechy", "Słowacja", "Węgry", "Rumunia", "Bułgaria", "Rosja", "Litwa", "Łotwa", "Estonia", "Białoruś", "Ukraina", "Austria", "Polska", "Dania"};
-//    String stolica[] = {"Praga", "Bratysława", "Budapeszt", "Bukareszt", "Sofia", "Moskwa", "Wilno", "Ryga", "Tallin", "Mińsk", "Kijów", "Wiedeń", "Warszawa", "Kopenhaga"};
     TextView tv;
     TextView pointT;
     TextView pointF;
@@ -71,17 +67,12 @@ public class MainActivity extends AppCompatActivity {
 
 void WczytajZmienne(){
     try {
-        // get JSONObject from JSON file
         JSONObject obj = new JSONObject(loadJSONFromAsset());
-        // fetch JSONArray named users
         JSONArray userArray = obj.getJSONArray("kraje");
-        // implement for loop for getting users list data
         for (int i = 0; i < userArray.length(); i++) {
-            // create a JSONObject for fetching single user data
             JSONObject userDetail = userArray.getJSONObject(i);
-            // fetch email and name and store it in arraylist
-            kraj.add(userDetail.getString("name"));
-            stolica.add(userDetail.getString("capitol"));
+            kraj.add(userDetail.getString("panstwo"));
+            stolica.add(userDetail.getString("stolica"));
             wielkosc = kraj.size()-1;
         }
     } catch ( JSONException e) {
